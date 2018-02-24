@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>河马</title>
+		<link rel="stylesheet" href="css/amazeui.min.css">
+		<link rel="stylesheet" href="css/rotary.css">
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body style="max-width: 640px; margin: 0 auto;">
+		<div class="rotary">
+			<img src="images/zt-smbg.png">
+			<div class="rotaryArrow-sm" id="rotaryArrow"></div>
+			<!--<a class="text-top-sm" href="#">我在上方</a>
+			<a class="text-bottom-sm" href="#">我在下方</a>-->
+		</div>
+
+		<!-- 中奖提示modal -->
+		<div class="am-modal am-modal-alert" tabindex="-1" id="m-prize-sm">
+			<div class="am-modal-dialog">
+				<div class="am-modal-bd animated bounceInDown">
+					<div class="prize-wrap-sm">
+						<img class="zj-bg" src="images/actip.png">
+						<div class="pimg"><div class="ptxt"></div><img src="images/m1.png" class="mm"/></div>
+						<div class="prize-txt-sm"></div>
+					</div>
+					<span data-am-modal-close class="am-close">&times;</span>
+				</div>
+			</div>
+		</div>
+		<!-- 中奖信息modal -->
+		<div class="am-modal am-modal-alert" tabindex="-1" id="m-infor">
+			<div class="am-modal-dialog">
+				<div class="am-modal-bd animated bounceInDown">
+					<div class="prize-wrap-sm">
+						<img src="images/infor-sm.png">
+						<div class="prize-infor">
+							<ul>
+								<li><input type="text" placeholder="请输入您的姓名" class="name" /></li>
+								<li><input type="text" placeholder="请输入您的联系方式" class="tel" /></li>
+								<li><input type="text" placeholder="请输入您的联系地址" class="addr" /></li>
+							</ul>
+							<div class="submit">提交</div>
+						</div>
+					</div>
+
+					<span data-am-modal-close class="am-close">&times;</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- 以上页面内容 开发时删除 -->
+
+		<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<script src="js/jquery.min.js"></script>
+		<!--<![endif]-->
+		<script src="js/amazeui.min.js"></script>
+		<script src="js/jquery.rotate.min.js"></script>
+		<!--<script src="js/hm.js"></script>-->
+		<script>
+			$(function() {
+				function reqUrl(path) {
+					var frontUrl = 'http://124.128.23.74:8008/group14/hm_web_third/index.php/Webservice/V100/';
+					return frontUrl + path;
+				}
+
+				var $rotaryArrow = $('#rotaryArrow');
+				var $result = $('.prize-wrap');
+				var $resultTxt = $('.ptxt');
+				var $resultImg = $('.prize-img-sm');
+				var $img = $('.pimg');
+
+				$rotaryArrow.click(function() {
+					$.ajax({
+						type: 'POST',
+						url: reqUrl("prize_get"),
+						dataType: 'JSON',
+						async: false,
+						xhrFields: {
+							withCredentials: true
+						},
+						success: function(data) {
+
+							if(data.success) {
+								var num = data.infor;
+								var number = parseInt(num.data);
+								switch(number) {
+									case 1:
+										rotateFunc(1, 65, 'ipod', 'images/m1.png');
+										break;
+									case 2:
+										rotateFunc(2, 295, '20000元抵扣券', 'images/m5.png');
+										break;
+									case 3:
+										rotateFunc(3, 340, '一万元抵扣券', 'images/m6.png');
+										break;
+									case 4:
+										rotateFunc(4, 160, '5000元抵扣券', 'images/m2.png');
+										break;
+									case 5:
+										rotateFunc(5, 20, '运营服务(12个月)', 'images/m7.png');
+										break;
+									case 6:
+										rotateFunc(6, 205, '软件维护(18个月)', 'images/m4.png');
+										break;
+									default:
+										rotateFunc(0, 0, '运营服务(12个月)', 'images/m7.png');
+								}
+								$('.submit').on('click', function() {
+									var name = $('.name').val();
+									var tel = $('.tel').val();
+									var addr = $('.addr').val();
+									var id = num.record;
+									var numbers = /^[1][34578][0-9]{9}$/;
+									if(!numbers.test(tel)) {
+										mask('请输入正确的手机号');
+										return false;
+									}
+									$.ajax({
+										type: 'POST',
+										url: reqUrl("message_save"),
+										dataType: 'JSON',
+										data: {
+											name: name,
+											mobile: tel,
+											address: addr,
+											record: id
+										},
+										async: false,
+										xhrFields: {
+											withCredentials: true
+										},
+										success: function(data) {
+											if(data.success) {
+												window.location.href = "information.html"
+											} else {
+												mask(data.msg);
+											}
+										},
+										error: function(e, request, settings) {
+											alert(settings);
+										}
+									});
+
+									$('.rotaryArrow').css('margin-left', '-81px');
+									$('#m-prize-sm').modal('close');
+									$('#m-infor').modal('close');
+								});
+							} else {
+								mask(data.msg);
+							}
+						},
+						error: function(e, request, settings) {
+							alert(settings);
+						}
+					});
+				});
+
+				var rotateFunc = function(awards, angle, text, img) { //awards:奖项，angle:奖项对应的角度
+					console.log(awards);
+					console.log(angle);
+					$rotaryArrow.stopRotate();
+					$rotaryArrow.rotate({
+						angle: 0,
+						duration: 5000,
+						animateTo: angle + 1800, //angle是图片上各奖项对应的角度，1800是让指针固定旋转5圈
+						callback: function() {
+							$resultTxt.html(text)
+							$img.children('img').attr('src',img);
+							var $m = $img.children('img').attr('src');
+							if($m == "images/m7.png"){
+								$('.mm').css('width','40%')
+							}
+							$('#m-prize-sm').modal({});
+						}
+					});
+				};
+				$('.prize-txt-sm').on('click', function() {
+					$('.rotaryArrow').css('margin-left', '-81px');
+					$('#m-prize-sm').modal('close');
+					$('#m-infor').modal('open');
+				});
+
+				// 遮罩
+
+				function mask(text) {
+					$('.layer').remove();
+					var content = '<div class="layer"> ' + text + '</div>'
+					$('body').append(content);
+
+					var w = $('.layer').width() + 40;
+					var win = $(window).width();
+
+					$('.layer').css('left', (win - w) / 2 + 'px');
+					$('.layer').fadeIn();
+					setTimeout(function() {
+						$('.layer').fadeOut();
+						$('.layer').remove();
+					}, 2000);
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

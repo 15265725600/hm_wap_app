@@ -1,0 +1,464 @@
+ ul,li{
+ 	list-style: none;
+ }
+ 
+ .animated {
+ 	-webkit-animation-duration: 3s;
+ 	animation-duration: 3s;
+ 	-webkit-animation-fill-mode: both;
+ 	animation-fill-mode: both
+ }
+ 
+ @-webkit-keyframes bounceInDown {
+ 	0% {
+ 		opacity: 0;
+ 		-webkit-transform: translateY(-2000px);
+ 		transform: translateY(-2000px)
+ 	}
+ 	60% {
+ 		opacity: 1;
+ 		-webkit-transform: translateY(30px);
+ 		transform: translateY(30px)
+ 	}
+ 	80% {
+ 		-webkit-transform: translateY(-10px);
+ 		transform: translateY(-10px)
+ 	}
+ 	100% {
+ 		-webkit-transform: translateY(0);
+ 		transform: translateY(0)
+ 	}
+ }
+ 
+ @keyframes bounceInDown {
+ 	0% {
+ 		opacity: 0;
+ 		-webkit-transform: translateY(-2000px);
+ 		-ms-transform: translateY(-2000px);
+ 		transform: translateY(-2000px)
+ 	}
+ 	60% {
+ 		opacity: 1;
+ 		-webkit-transform: translateY(30px);
+ 		-ms-transform: translateY(30px);
+ 		transform: translateY(30px)
+ 	}
+ 	80% {
+ 		-webkit-transform: translateY(-10px);
+ 		-ms-transform: translateY(-10px);
+ 		transform: translateY(-10px)
+ 	}
+ 	100% {
+ 		-webkit-transform: translateY(0);
+ 		-ms-transform: translateY(0);
+ 		transform: translateY(0)
+ 	}
+ }
+ 
+ .bounceInDown {
+ 	-webkit-animation-name: bounceInDown;
+ 	animation-name: bounceInDown
+ }
+ 
+ #m-activity {
+ 	display: block;
+ 	width: 100%;
+ 	height: 100%;
+ 	margin-left: 0;
+ 	left: 0;
+ }
+ #activity-bg{
+ 	width: 100%;
+ 	height: 100%;
+ }
+ #m-activity .am-modal-bd {
+ 	height: 458px;
+ 	background: url(../images/index-sm.png) no-repeat center;
+ 	background-size: contain;
+ }
+ 
+ #m-activity .am-close {
+ 	position: absolute;
+ 	top: 10%;
+ 	right: 5%;
+ 	opacity: 1;
+ 	color: #fff;
+ 	background-color: rgba(0, 0, 0, 0.6);
+ 	border: 1px solid #fff;
+ 	border-radius: 50%;
+ 	width: 20px;
+ 	height: 20px;
+ 	line-height: 14px;
+ 	font-weight: normal;
+ 	font-size: 18px;
+ }
+ 
+ #m-activity .btn {
+ 	display: block;
+ 	width: 120px;
+ 	height: 120px;
+ 	color: #fff;
+ 	position: absolute;
+ 	bottom: 5px;
+ 	right: 50%;
+ 	margin-right: -66px;
+ 	opacity: 1;
+ }
+ 
+#m-activity .am-modal-dialog{
+    background-color: transparent;
+}
+#m-activity .am-modal-bd{
+    border: none;
+}
+
+// 活动页
+.rotary{
+  position: relative; 
+  width: 100%; 
+}
+.rotary img{
+  width: 100%;
+}
+.rotaryArrow {
+    /*position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -86px;
+    margin-top: -60px;
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    background: url(../i/activity-arrow1.png) no-repeat center;
+    background-size: 126px 167px;*/
+  position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -81px;
+    margin-top: -52px;
+    width: 180px;
+    height: 250px;
+    cursor: pointer;
+    background: url(../images/activity-arrow1.png) no-repeat center;
+    background-size: 180px 250px;
+}
+
+#m-prize{
+    width: 100%; 
+    margin-left: -50%; 
+    margin-top: -480px;
+}
+#m-prize .am-modal-dialog,#m-infor .am-modal-dialog{
+    background-color: transparent;
+}
+#m-prize .am-modal-bd,#m-infor .am-modal-bd{
+    width:100%; 
+    height:100%;
+    border-bottom: none; 
+}
+
+#m-prize .am-close{
+    position: absolute;
+    top: 10%;
+    right: 36%; 
+    opacity: 1; 
+    color: #fc2f49; 
+    background-color: rgb(245,205,64); 
+    border: 1px solid #362302; 
+    border-radius: 50%; 
+    width: 30px; 
+    height: 30px;
+    line-height: 22px;    
+    font-weight: normal; 
+    font-size: 24px;
+}
+#m-infor .am-close{
+	 position: absolute;
+    top: 10%;
+    right: -4%; 
+    opacity: 1; 
+    color: #fc2f49; 
+    background-color: rgb(245,205,64); 
+    border: 1px solid #362302; 
+    border-radius: 50%; 
+    width: 30px; 
+    height: 30px;
+    line-height: 22px;    
+    font-weight: normal; 
+    font-size: 24px;
+}
+.prize-wrap{
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+}
+.prize-wrap img{
+  width: 100%;
+}
+.prize-img{
+    position: absolute;
+    top: 210px;
+    left: 170px;
+    width: 170px;
+    height: 50px;
+    font-size: 20px;
+    color: #fff;
+}
+.prize-img img{
+	width: 100px;
+	height: 70px;
+}
+.prize-txt{
+    width: 310px;
+    text-align: center;
+    color: #361519;
+    font-size: 24px;
+    position: absolute;
+    bottom: 80px;
+    left: 100px;
+    height: 100px;
+    opacity: 0;
+    z-index: 22;
+}
+.prize-infor{
+	width: 100%;
+	/*height: 500px;*/
+	position: absolute;
+	top: 43%;
+	left: 50%;
+	margin-left: -145px;
+	padding-left: 25px;
+	padding-bottom: 10px;
+}
+.prize-infor li{
+	margin-top: 15px;
+}
+.prize-infor input{
+	width: 80%;
+	padding: 7px 0;
+	text-align: center;
+	font-size: 12px;
+	color: #000;
+	border-radius: 20px;
+	border: none;
+	outline: 0;
+	margin: auto;
+	background: #f3f3f3;
+}
+.prize-infor .submit{
+	padding: 5px 0;
+	width: 40%;
+	text-align: center;
+	font-size: 13px;
+	color: #fff;
+	margin: auto;
+	background: #ff4200;
+	border-radius: 20px;
+	margin-top: -8px;
+	margin-left: 86px;
+}
+.rotaryArrow-sm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin: 0 auto;
+  margin-top: -89px;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  background: url(../images/activity-arrow1.png) no-repeat center;
+  background-size: 60px 80px;
+}
+
+#m-prize-sm{
+  width: 100%; 
+  margin-left: -50%; 
+  margin-top: -480px;
+}
+#m-prize-sm .am-modal-dialog{
+  background-color: transparent;
+}
+#m-prize-sm .am-modal-bd{
+  width:100%; 
+  height:100%;
+  border-bottom: none; 
+  padding: 0;
+}
+
+#m-prize-sm .am-close{
+  position: absolute;
+  top: 4%;
+  right: 18%; 
+  opacity: 1; 
+  color: #fc2f49; 
+  background-color: rgb(245,205,64); 
+  border: 1px solid #362302; 
+  border-radius: 50%; 
+  width: 25px; 
+  height: 25px;
+  line-height: 20px;    
+  font-weight: normal; 
+  font-size: 20px;
+}
+
+
+.prize-wrap-sm{
+    position: relative;
+    width: 100%;
+    /*height: 310px;*/
+    margin: 0 auto;
+}
+.prize-wrap-sm img{
+	width: 100%;
+}
+.prize-wrap-sm .zj-bg{
+    width: 100%;
+    height: 100%;
+}
+.pimg{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 65px;
+    margin-left: -60px;
+    margin-top: -44px;
+}
+.prize-wrap-sm .pimg img{
+	width: 65%;
+}
+.prize-img-sm{
+    position: absolute;
+    top: 142px;
+    left: 74px;
+    width: 84px;
+    height: 70px;
+}
+.prize-txt-sm{
+    width: 140px;
+    height: 100%;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin-left: -70px;
+}
+.prize-exchange{
+	position: absolute;
+    bottom: -2px;
+    left: 50%;
+    margin-left: -65px;
+    width: 130px;
+    height: 50px;
+}
+
+
+@media screen and (max-width: 640px){
+    .info-wrap{
+        width: 300px !important;
+        margin: 40px auto !important;
+    }
+    .info-form label{
+        width: 20% !important;
+    }
+}
+.info-wrap{
+    width: 500px;
+    margin: 100px auto;
+}
+.info-wrap h2{
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.info-form label{
+    width: 10%;
+    float: left;
+    margin-right: 10px;
+    line-height: 35px;
+    font-weight: normal;
+}
+.info-form label b{
+    color: #f60000;
+    padding-left: 6px;
+}
+
+.info-form input[type=text], .info-form textarea{
+    width: 76%;
+    float: left;
+}
+.info-form .am-btn{
+    width: 100px;
+    background-color: #23a6e8;
+    color: #fff;
+    position: relative;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 4px;
+}
+
+.text-top-sm, .text-bottom-sm, .text-top, .text-bottom{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    text-align: center;
+}
+.text-top-sm{  
+    top: 20%;
+}
+.text-bottom-sm{
+    top: 80%;
+}
+.text-top{
+    top: 25%;
+}
+.text-bottom{
+    top: 80%;
+}
+.layer{
+	box-sizing:border-box;
+	min-width:100px;
+	max-width:300px;
+	padding:12px 20px;
+	text-align:center;
+	color:#fff;
+	background-color:rgba(0,0,0,.6);
+	position:fixed;
+	top:40%;
+	left:0;
+	z-index:99999;
+	border-radius:6px;
+	display:none;
+}
+.infor-container{
+	padding: 0 20px;
+	margin: auto;
+	padding-top: 20px;
+	background: #F3F3F3;
+}
+.infor-container h1{
+	text-align: center;
+	font-size: 30px;
+}
+.infor-container .title{
+	font-size: 20px;
+	font-weight: 700;
+}
+.infor-container .name{
+	margin-top: 20px;
+}
+.infor-container .txt{
+	font-size: 14px;
+}
+.footer{
+	color: #df3011;
+}
+.black{
+	color: #000000;
+}
